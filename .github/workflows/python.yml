@@ -18,8 +18,7 @@ jobs:
           ./get_externals.bat
           ./buildrelease.bat -x64 --skip-doc --skip-msi
           cd ../../
-          tree /F > a.txt
       - name: upload-artifact
         uses: actions/upload-artifact@v4
         with:
-          path: a.txt
+          path: PCbuild/amd64/en-us/*.zip
