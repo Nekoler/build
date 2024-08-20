@@ -7,7 +7,8 @@ jobs:
       - name: Get source code
         uses: microsoft/setup-msbuild@v2
         with:
-          vs-version: 2017
+          vs-version: 15.9.65
+          msbuild-architecture: x64
       - name: build
         shell: pwsh
         run: |
@@ -22,5 +23,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: result
-          path: ../../PCbuild/*
+          path: ../../PCbuild/*.zip
 
