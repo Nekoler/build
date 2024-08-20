@@ -7,7 +7,7 @@ jobs:
       - name: Get source code
         uses: microsoft/setup-msbuild@v2
         with:
-            vs-version: 2017
+          vs-version: 2017
       - name: build
         shell: pwsh
         run: |
@@ -18,9 +18,9 @@ jobs:
           cd ../Tools/msi/
           ./get_externals.bat
           ./buildrelease.bat -o ../../PCbuild/
-        - name: upload-artifact
-          uses: actions/upload-artifact@v4
-          with:
-            name: result
-            path: ../../PCbuild/*
+      - name: upload-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: result
+          path: ../../PCbuild/*
 
