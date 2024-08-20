@@ -2,13 +2,8 @@ name: Build Python
 on: push
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
-      - name: setup
-        uses: microsoft/setup-msbuild@v2
-        with:
-          vs-version: 15.9.65
-          msbuild-architecture: x64
       - name: Get code
         uses: actions/checkout@v4
         with:
