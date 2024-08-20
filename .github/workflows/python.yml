@@ -22,10 +22,10 @@ jobs:
           cd ../Tools/msi/
           ./get_externals.bat
           ./buildrelease.bat --skip-doc --skip-msi -o ../../PCbuild/
-          cd ../../PCbuild
+          cd ../../
       - name: upload-artifact
         uses: actions/upload-artifact@v4
         with:
           name: result
-          path: *.zip
+          path: PCbuild/*.zip
 
