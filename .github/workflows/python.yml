@@ -6,7 +6,7 @@ jobs:
     steps:
       - name: Get source code
         uses: microsoft/setup-msbuild@v2
-          with:
+        with:
             vs-version: 2017
         shell: pwsh
         run: |
