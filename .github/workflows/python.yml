@@ -8,6 +8,7 @@ jobs:
         uses: microsoft/setup-msbuild@v2
         with:
             vs-version: 2017
+      - name: build
         shell: pwsh
         run: |
           Invoke-WebRequest -Uri 'https://www.python.org/ftp/python/3.10.14/Python-3.10.14.tar.xz' -OutFile Python-3.10.14.tar.xz
