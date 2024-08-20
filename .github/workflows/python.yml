@@ -23,7 +23,7 @@ jobs:
           ./get_externals.bat
           ./buildrelease.bat -x64 --skip-doc --skip-msi -o ../../PCbuild/
           cd ../../
-          tar -czf PCbuild.tar.gz PCbuild/
+          tree /F
       - name: upload-artifact
         uses: actions/upload-artifact@v4
         with:
