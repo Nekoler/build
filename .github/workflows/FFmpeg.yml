@@ -1,0 +1,27 @@
+name: Build FFmpeg
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Docker
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: GetCode
+        uses: actions/checkout@v4
+        with:
+          repository: BtbN/FFmpeg-Builds
+      - name: Build
+        shell: bash
+        run: |
+          sed -i 's/\${REPO,,}/btbn\/ffmpeg-builds/g' util/vars.sh
+          sed -i 's/\${ADDINS[*]}/7.0/g' build.sh
+          sed -i "46 i sed -i 's/--enable-libvvenc//g' \$BUILD_SCRIPT" build.sh
+          ./build.sh win64 gpl-shared
+      - name: UploadBin
+        uses: actions/upload-artifact@v4
+        with:
+          path: artifacts
