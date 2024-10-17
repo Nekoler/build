@@ -9,7 +9,7 @@ jobs:
         with:
           repository: python/cpython
           ref: refs/tags/v3.10.15
-      - name: build
+      - name: Build
         shell: pwsh
         run: |
           cd PCbuild/

@@ -1,4 +1,4 @@
-name: BuildDocker
+name: BuildImage
 on: workflow_dispatch
 jobs:
   Build:
