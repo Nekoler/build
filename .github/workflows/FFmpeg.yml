@@ -18,7 +18,7 @@ jobs:
         shell: bash
         run: |
           sed -i 's/\${REPO,,}/btbn\/ffmpeg-builds/g' util/vars.sh
-          sed -i "s/--branch='$GIT_BRANCH'/--branch=release\/7.0/g" build.sh
+          sed -i "s/--branch='\$GIT_BRANCH'/--branch=release\/7.0/g" build.sh
           sed -i 's/\${ADDINS[*]}/7.0/g' build.sh
           sed -i "46 i sed -i 's/--enable-libvvenc//g' \$BUILD_SCRIPT" build.sh
           ./build.sh win64 gpl-shared
