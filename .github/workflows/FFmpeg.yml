@@ -1,7 +1,7 @@
-name: Build FFmpeg
+name: BuildFFmpeg
 on: workflow_dispatch
 jobs:
-  build:
+  Build:
     runs-on: ubuntu-20.04
     steps:
       - name: Docker
