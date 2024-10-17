@@ -19,7 +19,6 @@ jobs:
         run: |
           sudo apt-get clean
           docker system prune -a -f
-          sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc
           ./makeimage.sh win64 gpl-shared 7.0
           docker ps -a
       - name: UploadBin
