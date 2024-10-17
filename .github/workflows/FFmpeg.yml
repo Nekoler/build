@@ -21,6 +21,7 @@ jobs:
           sed -i "s/--branch='\$GIT_BRANCH'/--branch=release\/7.0/g" build.sh
           sed -i 's/\${ADDINS[*]}/7.0/g' build.sh
           sed -i "46 i sed -i 's/--enable-libvvenc//g' \$BUILD_SCRIPT" build.sh
+          cat $BUILD_SCRIPT
           ./build.sh win64 gpl-shared
       - name: UploadBin
         uses: actions/upload-artifact@v4
