@@ -1,0 +1,24 @@
+name: BuildPython
+on: workflow_dispatch
+jobs:
+  Build:
+    runs-on: windows-2019
+    steps:
+      - name: GetCode
+        uses: actions/checkout@v4
+        with:
+          repository: python/cpython
+          ref: refs/tags/v3.10.15
+      - name: Build
+        shell: pwsh
+        run: |
+          cd PCbuild/
+          ./get_externals.bat
+          cd ../Tools/msi/
+          ./get_externals.bat
+          ./buildrelease.bat -x64 --skip-doc --skip-msi
+          cd ../../
+      - name: UploadBin
+        uses: actions/upload-artifact@v4
+        with:
+          path: PCbuild/amd64/en-us/*.zip
