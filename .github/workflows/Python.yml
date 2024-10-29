@@ -13,9 +13,10 @@ jobs:
         shell: pwsh
         run: |
           PCbuild/get_externals.bat
+          Tools/msi/get_externals.bat
           PCbuild/build.bat -e --pgo -p x64 -t build
           Tools/msi/buildrelease.bat -x64 --skip-doc --skip-msi
       - name: UploadBin
         uses: actions/upload-artifact@v4
         with:
-          path: PCbuild/amd64/*
+          path: PCbuild/amd64/en-us/*
