@@ -12,13 +12,10 @@ jobs:
       - name: Build
         shell: pwsh
         run: |
-          cd PCbuild/
-          ./get_externals.bat
-          cd ../Tools/msi/
-          ./get_externals.bat
-          ./buildrelease.bat -x64 --skip-doc --skip-msi
+          cd Tools/msi/
+          ./buildrelease.bat -x64 --skip-doc --skip-msi --pgo
           cd ../../
       - name: UploadBin
         uses: actions/upload-artifact@v4
         with:
-          path: PCbuild/amd64/en-us/*.zip
+          path: PCbuild/amd64/*
