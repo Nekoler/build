@@ -1,0 +1,23 @@
+name: PatchFont
+on: workflow_dispatch
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: GetCode
+        uses: actions/checkout@v4
+        with:
+          repository: chenh96/yahei-sarasa
+      - name: Patch
+        shell: bash
+        run: |
+          sudo apt install fontforge
+          sudo apt install python3-fontforge
+          sudo apt install python3-wget
+          sudo apt install python3-py7zr
+          sudo apt install python3-requests
+          python3 auto_all.py
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          path: result/*
