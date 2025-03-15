@@ -7,10 +7,9 @@ jobs:
       - name: Extract
         shell: cmd
         run: |
-          curl -L -o qemu.exe https://qemu.weilnetz.de/w64/2024/qemu-w64-setup-20240822.exe
+          curl -L -o qemu.exe https://qemu.weilnetz.de/w64/2025/qemu-w64-setup-20250210.exe
           mkdir qemu
           .\qemu.exe /S /D=%cd%\qemu
-          tree /F
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
