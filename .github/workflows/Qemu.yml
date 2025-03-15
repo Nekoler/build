@@ -5,10 +5,11 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Extract
-        shell: pwsh
+        shell: cmd
         run: |
-          curl 'https://qemu.weilnetz.de/w64/qemu-w64-setup-20250210.exe' -L -O
-          ./qemu-w64-setup-20250210.exe /S /D=./qemu
+          curl -L -o qemu.exe https://qemu.weilnetz.de/w64/2024/qemu-w64-setup-20240822.exe
+          mkdir qemu
+          .\qemu.exe /S /D=%cd%\qemu
           tree /F
       - name: Upload
         uses: actions/upload-artifact@v4
