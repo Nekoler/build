@@ -12,6 +12,7 @@ jobs:
       - name: Build
         shell: pwsh
         run: |
+          PCbuild/build.bat -e --pgo -p x64 -t Build
           Tools/msi/buildrelease.bat -x64 --skip-doc --skip-msi
       - name: UploadBin
         uses: actions/upload-artifact@v4
