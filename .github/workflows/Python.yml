@@ -12,6 +12,8 @@ jobs:
       - name: Build
         shell: pwsh
         run: |
+          PCbuild/get_externals.bat
+          Tools/msi/get_externals.bat
           PCbuild/build.bat -e --pgo -p x64 -t Build
           Tools/msi/buildrelease.bat -x64 --skip-doc --skip-msi
       - name: UploadBin
