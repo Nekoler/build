@@ -2,7 +2,7 @@ name: BuildPython
 on: workflow_dispatch
 jobs:
   Build:
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - name: GetCode
         uses: actions/checkout@v4
