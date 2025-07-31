@@ -1,5 +1,10 @@
 name: BuildPython
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: '版本号'
+        required: true
 jobs:
   Build:
     runs-on: windows-2022
@@ -8,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: python/cpython
-          ref: refs/tags/v3.10.18
+          ref: refs/tags/v${{ github.event.inputs.version }}
       - name: Build
         shell: pwsh
         run: |
