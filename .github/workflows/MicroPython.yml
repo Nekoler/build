@@ -1,0 +1,27 @@
+name: MicroPython
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: msbuild
+        uses: microsoft/setup-msbuild@v2
+        with:
+          vs-version: [17, 18)
+          msbuild-architecture: x86
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          repository: micropython/micropython
+          ref: v1.26.1
+          fetch-depth: 1
+      - name: Build
+        shell: pwsh
+        run: |
+          msbuild mpy-cross\mpy-cross.vcxproj -maxcpucount /p:Configuration=Release /p:Platform=x64 /p:Optimize=true /p:OptimizationLevel=3
+          git submodule update --init lib/micropython-lib
+          msbuild ports\windows\micropython.vcxproj -maxcpucount /p:Configuration=Release /p:Platform=x64 /p:PyVariant=standard /p:Optimize=true /p:OptimizationLevel=3
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          path: ports\windows\build-standard\Releasex64\micropython.exe
