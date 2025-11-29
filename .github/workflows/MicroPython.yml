@@ -18,9 +18,9 @@ jobs:
       - name: Build
         shell: pwsh
         run: |
-          msbuild mpy-cross\mpy-cross.vcxproj -maxcpucount /p:Configuration=Release /p:Platform=x64 /p:Optimize=true /p:OptimizationLevel=3
+          msbuild mpy-cross\mpy-cross.vcxproj /m /p:Configuration=Release /p:Platform=x64 /p:Optimize=true
           git submodule update --init lib/micropython-lib
-          msbuild ports\windows\micropython.vcxproj -maxcpucount /p:Configuration=Release /p:Platform=x64 /p:PyVariant=standard /p:Optimize=true /p:OptimizationLevel=3
+          msbuild ports\windows\micropython.vcxproj /m /p:Configuration=Release /p:Platform=x64 /p:PyVariant=standard /p:Optimize=true
           mkdir result
           mv mpy-cross\build\mpy-cross.exe result/
           mv ports\windows\build-standard\micropython.exe result/
