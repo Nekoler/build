@@ -7,7 +7,7 @@ jobs:
       - name: msbuild
         uses: microsoft/setup-msbuild@v2
         with:
-          vs-version: [17, 18)
+          vs-version: '[17,18)'
           msbuild-architecture: x86
       - name: Checkout
         uses: actions/checkout@v6
