@@ -8,7 +8,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: Bistutu/FluentRead
-          ref: 06c1f02
+          ref: 06c1f02c553abb93ed57d6cf9da87844d9a9b11a
           fetch-depth: 1
       - name: Build
         shell: bash
