@@ -1,4 +1,4 @@
-name: BuildPython
+name: CPython
 on:
   workflow_dispatch:
     inputs:
@@ -7,18 +7,18 @@ on:
         required: true
 jobs:
   Build:
-    runs-on: windows-2022
+    runs-on: windows-latest
     steps:
-      - name: GetCode
-        uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v6
         with:
           repository: python/cpython
-          ref: refs/tags/v${{ github.event.inputs.version }}
+          ref: ${{ github.event.inputs.version }}
       - name: Build
         shell: pwsh
         run: |
           Tools/msi/buildrelease.bat -x64 --skip-doc --skip-msi
-      - name: UploadBin
+      - name: Result
         uses: actions/upload-artifact@v4
         with:
           path: PCbuild/amd64/en-us/*
