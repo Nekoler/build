@@ -1,0 +1,23 @@
+name: TEMP
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout
+        with:
+          repository: Bistutu/FluentRead
+          ref: 06c1f02
+          fetch-depth: 1
+      - name: Build
+        shell: bash
+        run: |
+          npm install -g wxt pnpm
+          pnpm install
+          wxt build
+      - name: Upload
+        uses: actions/upload-artifact
+        with:
+          name: MicroPython
+          path: .output/*
