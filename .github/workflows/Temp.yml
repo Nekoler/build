@@ -2,23 +2,21 @@ name: Temp
 on: workflow_dispatch
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v6
         with:
-          repository: Bistutu/FluentRead
-          ref: 06c1f02c553abb93ed57d6cf9da87844d9a9b11a
+          repository: typst/svg2pdf
+          ref: v0.13.0
           fetch-depth: 1
       - name: Build
-        shell: bash
+        shell: pwsh
         run: |
-          npm install -g wxt pnpm
-          pnpm install
-          wxt build
+          cargo build --release
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: Result
-          path: .output/*
+          path: target/release/*
           include-hidden-files: true
