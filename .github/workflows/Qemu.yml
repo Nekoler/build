@@ -1,0 +1,15 @@
+name: PortableQemu
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Extract
+        shell: cmd
+        run: |
+          curl -L -o qemu.exe https://qemu.weilnetz.de/w64/qemu-w64-setup-20251224.exe
+          .\qemu.exe /S /D=%cd%\qemu
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          path: qemu
