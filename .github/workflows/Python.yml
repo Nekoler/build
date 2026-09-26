@@ -17,7 +17,7 @@ jobs:
       - name: Build
         shell: pwsh
         run: |
-          PCbuild/build.bat --pgo
+          PCbuild/build.bat -e --pgo
       - name: Result
         uses: actions/upload-artifact@v4
         with:
