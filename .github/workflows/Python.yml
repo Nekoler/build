@@ -18,7 +18,7 @@ jobs:
         shell: pwsh
         run: |
           PCbuild/build.bat -e --pgo
-          python PC/layout --copy=dist --preset-embed
+          PCbuild/amd64/python PC/layout --copy=dist --preset-embed
       - name: Result
         uses: actions/upload-artifact@v7
         with:
