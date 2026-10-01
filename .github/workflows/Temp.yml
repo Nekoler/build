@@ -2,21 +2,21 @@ name: Temp
 on: workflow_dispatch
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v6
         with:
-          repository: typst/svg2pdf
-          ref: v0.13.0
+          repository: yorukot/superfile
+          ref: v1.6.0
           fetch-depth: 1
       - name: Build
-        shell: pwsh
+        shell: bash
         run: |
-          cargo build --release
+          GOOS=windows GOARCH=amd64 go build -ldflags="-s -w" -trimpath -gcflags="-l=4" -o spf.exe
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: Result
-          path: target/release/*
+          path: spf.exe
           include-hidden-files: true
