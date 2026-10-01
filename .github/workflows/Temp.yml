@@ -15,7 +15,7 @@ jobs:
         run: |
           sed -i '164d' src/internal/common/string_function.go
           sed -i '161s/Bin/Dec/' src/internal/common/string_function.go
-          GOOS=windows GOARCH=amd64 go build -ldflags="-s -w" -trimpath -gcflags="-l=4" -o spf.exe
+          GOOS=windows GOARCH=amd64 go build -ldflags="-s -w" -trimpath -o spf.exe
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
