@@ -7,18 +7,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
         with:
-          repository: yorukot/superfile
-          ref: v1.6.0
+          repository: saivert/pwvucontrol
+          ref: 0.5.3
           fetch-depth: 1
       - name: Build
         shell: bash
         run: |
-          sed -i '164d' src/internal/common/string_function.go
-          sed -i '161s/Bin/Dec/' src/internal/common/string_function.go
-          go build -ldflags="-s -w" -trimpath -o spf
+          meson setup builddir
+          meson compile -C builddir
+          meson install -C builddir
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: Result
-          path: spf
+          path: builddir
           include-hidden-files: true
