@@ -16,10 +16,12 @@ jobs:
           sudo apt update
           sudo apt install -y meson libgtk-4-dev libglib2.0-dev libgtk-4-dev libadwaita-1-dev libpipewire-0.3-dev libwireplumber-0.5-dev pkg-config gettext desktop-file-utils libglib2.0-bin libxml2-utils
           meson setup builddir
+          mkdir installdir
           meson compile -C builddir
+          meson install -C builddir --destdir installdir
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: Result
-          path: builddir
+          path: installdir
           include-hidden-files: true
