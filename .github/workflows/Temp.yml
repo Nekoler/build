@@ -13,8 +13,8 @@ jobs:
       - name: Build
         shell: bash
         run: |
-          apt update
-          apt install meson
+          sudo apt update
+          sudo apt install meson
           meson setup builddir
           meson compile -C builddir
           meson install -C builddir
