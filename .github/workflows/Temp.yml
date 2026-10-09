@@ -23,5 +23,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Result
-          path: installdir
+          path: builddir/installdir
           include-hidden-files: true
