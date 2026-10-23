@@ -7,15 +7,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
         with:
-          repository: sadlavaarsc/iris
+          repository: DavHau/nix-portable
           fetch-depth: 1
+          ref: v012
       - name: Build
         shell: bash
         run: |
-          cargo build --release
+          sudo apt update
+          sudo apt install nix-bin
+          nix build
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: Result.zip
-          path: target/release/iris
+          path: result/bin
           include-hidden-files: true
