@@ -15,7 +15,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install nix-bin
-          nix build
+          nix build --extra-experimental-features
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
