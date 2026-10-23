@@ -15,7 +15,8 @@ jobs:
         run: |
           sudo apt update
           sudo apt install nix-bin
-          sudo -E nix build --extra-experimental-features "nix-command flakes"
+          sed -i '136s/\/.nix-portable//' default.nix
+          sudo nix build --extra-experimental-features "nix-command flakes"
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
